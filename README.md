@@ -1,4 +1,5 @@
 # Seoul Subway & Mobility Analytics
+<img width="1851" height="839" alt="Dashboard" src="https://github.com/user-attachments/assets/4785cf77-74b4-49fc-be82-a936de28b5a6" />
 
 ## Overview
 This project analyzes Seoul's subway travel patterns to understand how different stations function within the city's urban mobility network.
