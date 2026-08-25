@@ -109,9 +109,8 @@ These are mobility-pattern classifications. They are not proof of surrounding la
 │   └── tableau/
 ├── notebooks/
 │   ├── 01_cleaning.ipynb
-│   ├── 02_sql_validation.ipynb
-│   ├── 03_python_analysis.ipynb
-│   └── 04_insights.ipynb
+│   ├── 02_python_analysis.ipynb
+│   └── 03_insights.ipynb
 ├── sql/
 │   ├── 01_schema.sql
 │   ├── 02_load.sql
