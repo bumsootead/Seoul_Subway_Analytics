@@ -88,7 +88,8 @@ These are mobility-pattern classifications. They are not proof of surrounding la
 
 - **Python:** Pandas, NumPy, Matplotlib, Seaborn
 - **Database:** PostgreSQL
-- **Visualization:** Tableau
+- **Visualization:** Tableau (interactive dashboard available in tableau public)
+- **Visualization Link:** https://public.tableau.com/app/profile/bumsoo.jeong/viz/SeoulSubwayAnalysis/1_1
 - **Data source format:** CP949-encoded CSV
 
 ## Data Quality and Limitations
@@ -109,15 +110,14 @@ These are mobility-pattern classifications. They are not proof of surrounding la
 │   └── tableau/
 ├── notebooks/
 │   ├── 01_cleaning.ipynb
-│   ├── 02_python_analysis.ipynb
-│   └── 03_insights.ipynb
+│   ├── 02_insights.ipynb
+│   └── 03_python_analysis.ipynb
 ├── sql/
-│   ├── 01_schema.sql
+│   ├── 01_analysis.sql
 │   ├── 02_load.sql
-│   └── 03_analysis.sql
+│   └── 03_schema.sql
 ├── outputs/
 │   ├── figures/
-│   └── tables/
 └── README.md
 ```
 
