@@ -3,35 +3,31 @@
 
 ## Overview
 This project analyzes Seoul's subway travel patterns to understand how different stations function within the city's urban mobility network.
+The analysis standardizes official 2024 and 2025 Seoul Metro datasets into a common station-hour model, identifies recurring commute and leisure patterns, classifies station mobility roles, and presents findings through Python visualizations and an interactive Tableau dashboard.
 
 ## Seoul Subway Mobility Hub Analysis: Identifying Commuter, Residential, and Commercial Travel Patterns
 
 Core question
 > How do subway travel patterns vary across Seoul, and which stations function primarily as commuter/employment hubs, residential-origin hubs, commercial/leisure hubs, or high-volume mixed mobility hubs?
 
-Using Python, PostgreSQL, and Tableau, the project standardizes official Seoul Metro ridership data, measures directional travel flows, classifies station roles, and presents the results in an interactive dashboard.
+## Interactive Tableau Dashboard
+
+[Explore the live Seoul Subway Mobility Dashboard](https://public.tableau.com/app/profile/bumsoo.jeong/viz/SeoulSubwayAnalysis/1_1)
 
 ## Key Findings
 
-- **Weekday activity is commuter-led.** Average citywide activity was about 10.02 million movements on 2024 weekdays versus 6.51 million on weekends. For July–December 2025, the equivalent values were 9.90 million and 6.58 million.
+- **Weekday activity is commuter-led.** Average citywide passenger activity was approximately 10.02 million movements on 2024 weekdays, compared with 6.51 million on weekends.
+- **Demand follows a consistent two-peak commute pattern** The strongest weekday demand periods occur at**8:00–09:00 and 18:00–19:00.**
 - **Two weekday peaks recur across the network:** 08:00–09:00 is the leading morning period and 18:00–19:00 is the leading evening period. Weekend demand shifts later, concentrating in the afternoon.
 - **Line 2 is the network's largest activity corridor**, with approximately 1.55 billion passenger movements across the combined available period.
 - **Commuter/employment hubs** include Gangnam, Yeoksam, Samsung (Trade Center), Seolleung, Euljiro 1-ga, and Gasan Digital Complex; these stations have high morning alighting and high evening boarding flows.
 - **Residential-origin hubs** include Sillim, Kkachisan, Yeonsinnae, Ssangmun, and Hwagok; these show the reverse directional profile.
 - **Commercial/leisure candidates** such as Jongno 3-ga, Jongno 5-ga, Hoehyeon (Namdaemun Market), Cheongnyangni, and Express Bus Terminal have comparatively high midday activity shares.
-- Across the completed evidence table, the classification is stable across both source periods: 72 commuter/employment hubs, 58 residential-origin hubs, 98 commercial/leisure hubs, 4 high-volume mixed hubs, and 315 local/balanced stations.
-- For comparable July–December records, station-level year-over-year ridership had a median change of **+1.81%**. Seoul Station increased about 36%, while results for newly opened, renamed, or changed-service stations require separate validation.
+- **Comparable Jul–Dec year-over-year activity was broadly stable.** The median station-level change from Jul–Dec 2024 to Jul–Dec 2025 was +1.81%.
 
 ## Significant Data Change
 
 April 2024 is a major outlier. Average daily activity was about 12.82 million, compared with 8.91 million in March and 9.04 million in May; the uplift occurred across all lines and reversed immediately afterward. The project flags April 2024 as a likely reporting, extraction, or aggregation anomaly rather than treating it as confirmed demand growth.
-
-Individual April spikes: Citywide activity reached 15.01M on 5 April 2024 and 15.01M on 30 April 2024, compared with a typical 2024 weekday average of roughly 10.02M.
-
-Holiday-related drop-offs: The lowest-demand dates align with major holiday periods:
-- 10 February 2024: 3.04M movements
-- 16–17 September 2024: 3.31M–3.73M
-- 6–7 October 2025: 3.13M–4.15M
 
 ## Data Sources
 
@@ -61,8 +57,6 @@ Official CSV files
 | `station_hourly_passenger_type_2025.csv` | Jul–Dec 2025 ridership at passenger-type detail. |
 | `station_daily_wide.csv` | Daily station boardings, alightings, total activity, and net boarding. |
 | `final_evidence_table.csv` | Final station-role evidence table for analysis and Tableau. |
-| `seoul_subway_line_map` | Station coordinates(longitude & latitude) and path order for each station lines |
-
 
 `final_evidence_table.csv` contains 547 station-year records and the fields below:
 
@@ -89,9 +83,17 @@ These are mobility-pattern classifications. They are not proof of surrounding la
 
 - **Python:** Pandas, NumPy, Matplotlib, Seaborn
 - **Database:** PostgreSQL
-- **Visualization:** Tableau (interactive dashboard available in tableau public)
-- **Visualization Link:** https://public.tableau.com/app/profile/bumsoo.jeong/viz/SeoulSubwayAnalysis/1_1
+- **Visualization:** Tableau
 - **Data source format:** CP949-encoded CSV
+
+## Running the Project
+
+1. Place the two raw CSV files in `data/raw/`.
+2. Run the cleaning notebook/script to produce the standardized files in `data/cleaned/`.
+3. Load `station_hourly_total.csv` and `station_hourly_passenger_type_2025.csv` into PostgreSQL staging tables.
+4. Run the schema, validation, and analysis SQL scripts.
+5. Export the final evidence table and Tableau extracts.
+6. Build the Tableau dashboard using the cleaned and evidence-table outputs.
 
 ## Data Quality and Limitations
 
@@ -111,14 +113,16 @@ These are mobility-pattern classifications. They are not proof of surrounding la
 │   └── tableau/
 ├── notebooks/
 │   ├── 01_cleaning.ipynb
-│   ├── 02_insights.ipynb
-│   └── 03_python_analysis.ipynb
+│   ├── 02_sql_validation.ipynb
+│   ├── 03_python_analysis.ipynb
+│   └── 04_insights.ipynb
 ├── sql/
-│   ├── 01_analysis.sql
+│   ├── 01_schema.sql
 │   ├── 02_load.sql
-│   └── 03_schema.sql
+│   └── 03_analysis.sql
 ├── outputs/
 │   ├── figures/
+│   └── tables/
 └── README.md
 ```
 
